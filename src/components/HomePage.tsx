@@ -186,36 +186,24 @@ export default function HomePage() {
         {/* ── HERO ── */}
         <section className="mb-14 space-y-8">
 
-          {/* HEADLINE — full width, desktop only (hidden on mobile) */}
-          <div className="hidden lg:block fade-up space-y-4">
-            <h1 className="headline text-5xl font-black leading-[1.05] text-[#0a2844] xl:text-6xl">
+          {/* LOGO + HEADLINE — full width, above everything */}
+          <div className="fade-up space-y-4">
+            <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-20 sm:h-24 w-auto object-contain" />
+            <h1 className="headline text-3xl font-black leading-tight text-[#0a2844] sm:text-4xl lg:text-5xl xl:text-6xl">
               Know your NEET 2026 rank{" "}
               <span className="text-[#f26430]">in seconds.</span>
             </h1>
-            <p className="max-w-2xl text-lg leading-8 text-slate-600">
+            <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               Enter your estimated score and get an instant rank prediction. Then book a free
               counselling session with TAB India experts to plan your next steps.
             </p>
           </div>
 
-          {/* TWO-COLUMN: logo+pills (left) | predictor (right) */}
+          {/* TWO-COLUMN: pills+counselling (left) | predictor (right) */}
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
 
-            {/* LEFT — logo + pills + counselling (desktop); shown below predictor on mobile via order */}
+            {/* LEFT — pills + counselling; shown below predictor on mobile */}
             <div className="order-2 lg:order-1 space-y-6">
-
-              {/* Mobile-only headline */}
-              <div className="lg:hidden fade-up space-y-3">
-                <h1 className="headline text-3xl font-black leading-tight text-[#0a2844] sm:text-4xl">
-                  Know your NEET 2026 rank{" "}
-                  <span className="text-[#f26430]">in seconds.</span>
-                </h1>
-                <p className="text-base leading-7 text-slate-600">
-                  Enter your estimated score and get an instant rank prediction.
-                </p>
-              </div>
-
-              <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-24 sm:h-28 w-auto object-contain" />
 
               <div className="fade-up-2 flex flex-wrap gap-3">
                 {[
