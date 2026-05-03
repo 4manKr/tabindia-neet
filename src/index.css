@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f6f5f0;
+  --surface: #fffdf8;
+  --surface-strong: #fff4e7;
+  --brand-navy: #123d63;
+  --brand-navy-strong: #0a2844;
+  --brand-orange: #f26430;
+  --brand-orange-soft: #ffb06d;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--background);
+  color: var(--brand-navy-strong);
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background-image:
+    radial-gradient(ellipse 80% 50% at top right,  rgba(242,100,48,.18), transparent 55%),
+    radial-gradient(ellipse 60% 60% at bottom left, rgba(18,61,99,.14),  transparent 55%),
+    linear-gradient(180deg, #fffbf6 0%, #f6f5f0 50%, #edf3fa 100%);
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(18,61,99,.2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(18,61,99,.35); }
+::selection { background: rgba(242,100,48,.22); }
+
+/* ── Grid overlay ── */
+.brand-shell {
+  position: relative;
+  isolation: isolate;
+}
+.brand-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .35;
+  background-image:
+    linear-gradient(rgba(18,61,99,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,61,99,.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* ── Glass ── */
+.glass-panel {
+  background: rgba(255,253,248,.86);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── Typography ── */
+.headline {
+  font-family: "Bahnschrift", "Segoe UI", Arial, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ── Shadows ── */
+.brand-shadow {
+  box-shadow: 0 32px 80px rgba(10,40,68,.14), 0 8px 20px rgba(242,100,48,.1);
+}
+.brand-shadow-sm {
+  box-shadow: 0 12px 32px rgba(10,40,68,.1), 0 4px 10px rgba(242,100,48,.08);
+}
+.brand-ring {
+  box-shadow: 0 0 0 1px rgba(18,61,99,.09);
+}
+
+/* ── Gradients ── */
+.brand-gradient {
+  background: linear-gradient(135deg, #0a2844 0%, #123d63 55%, #1a5a8a 100%);
+}
+.brand-orange-gradient {
+  background: linear-gradient(135deg, #ff9155 0%, #f26430 60%, #e0481a 100%);
+}
+.brand-orange-soft-bg {
+  background: linear-gradient(135deg, rgba(255,145,85,.12), rgba(242,100,48,.08));
+}
+
+/* ── Cards ── */
+.story-card {
+  border: 1px solid rgba(18,61,99,.08);
+  box-shadow: 0 16px 40px rgba(9,37,63,.07);
+}
+.stat-card {
+  border: 1px solid rgba(18,61,99,.1);
+  box-shadow: 0 8px 24px rgba(9,37,63,.06);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(9,37,63,.1), 0 4px 12px rgba(242,100,48,.1);
+}
+
+/* ── Buttons ── */
+.btn-orange {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff9155, #f26430, #e0481a);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 1.4rem;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 0 24px rgba(242,100,48,.32), 0 6px 16px rgba(242,100,48,.2);
+}
+.btn-orange:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(242,100,48,.42), 0 10px 22px rgba(242,100,48,.28);
+}
+.btn-orange:active { transform: translateY(0); }
+.btn-orange:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Input ── */
+.input-field {
+  width: 100%;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(18,61,99,.12);
+  background: var(--surface);
+  padding: .75rem 1rem;
+  font-size: .875rem;
+  color: var(--brand-navy-strong);
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+.input-field::placeholder { color: #cbd5e1; }
+.input-field:focus {
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 0 3px rgba(242,100,48,.12);
+}
+
+/* ── Field label ── */
+.field-label {
+  display: block;
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  color: #123d63;
+}
+
+/* ── Select ── */
+select.input-field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23123d63' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* ── Score bar ── */
+.score-bar-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #f26430, #ff9155);
+  transition: width 400ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Divider ── */
+.brand-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(18,61,99,.12), transparent);
+}
+
+/* ── Animations ── */
+@keyframes float-card {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity:1; transform:scale(1); }
+  50%       { opacity:.55; transform:scale(.82); }
+}
+@keyframes fade-up {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes slide-right {
+  from { opacity:0; transform:translateX(28px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+@keyframes modal-pop {
+  from { opacity:0; transform:translateY(22px) scale(.96); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes count-up {
+  from { opacity:0; transform:scale(.85); }
+  to   { opacity:1; transform:scale(1); }
+}
+
+.floating   { animation: float-card 5s ease-in-out infinite; }
+.pulse-dot  { animation: pulse-dot 2s ease-in-out infinite; }
+.fade-up    { animation: fade-up .6s ease-out both; }
+.fade-up-1  { animation: fade-up .6s .1s ease-out both; }
+.fade-up-2  { animation: fade-up .6s .2s ease-out both; }
+.fade-up-3  { animation: fade-up .6s .32s ease-out both; }
+.slide-right { animation: slide-right .55s .1s ease-out both; }
+.modal-pop  { animation: modal-pop 240ms cubic-bezier(.34,1.56,.64,1); }
