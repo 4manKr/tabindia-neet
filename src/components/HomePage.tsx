@@ -194,10 +194,10 @@ export default function HomePage() {
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-20 pt-8 sm:px-6 lg:px-8">
 
         {/* ── HERO ── */}
-        <section className="mb-14 space-y-8">
+        <section className="mb-14">
 
-          {/* LOGO + HEADLINE — full width, above everything */}
-          <div className="fade-up space-y-4">
+          {/* LOGO + HEADLINE — always on top, all screen sizes */}
+          <div className="mb-8 space-y-4">
             <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-20 sm:h-24 w-auto object-contain" />
             <h1 className="headline text-3xl font-black leading-tight text-[#0a2844] sm:text-4xl lg:text-5xl xl:text-6xl">
               Know your NEET 2026 rank
@@ -213,8 +213,8 @@ export default function HomePage() {
           {/* TWO-COLUMN: pills+counselling (left) | predictor (right) */}
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
 
-            {/* LEFT — pills + counselling; shown below predictor on mobile */}
-            <div className="order-2 lg:order-1 space-y-6">
+            {/* LEFT — pills + counselling; below predictor on mobile */}
+            <div className="order-last lg:order-first space-y-6">
 
               <div className="fade-up-2 flex flex-wrap gap-3">
                 {[
@@ -253,8 +253,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* RIGHT — predictor card (order-1 = first on mobile) */}
-            <div className="relative order-1 lg:order-2" id="predictor">
+            {/* RIGHT — predictor card (first in grid on mobile) */}
+            <div className="relative order-first lg:order-last" id="predictor">
               <div className="pointer-events-none absolute -left-6 top-8 h-40 w-40 rounded-full bg-[#f26430]/20 blur-3xl" />
               <div className="pointer-events-none absolute bottom-8 -right-4 h-44 w-44 rounded-full bg-[#123d63]/15 blur-3xl" />
 
