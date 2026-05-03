@@ -169,9 +169,15 @@ export default function HomePage() {
             <p className="text-[10px] font-bold uppercase tracking-[.3em] text-[#f26430]">NEET 2026</p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <a href="tel:+919311483555" className="hidden sm:flex items-center gap-2 text-sm font-semibold text-[#123d63] hover:text-[#f26430] transition-colors">
             <span>📞</span> +91 93114 83555
+          </a>
+          <a
+            href="#predictor"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[#123d63]/20 bg-white px-4 py-2 text-sm font-bold text-[#123d63] shadow-sm hover:border-[#f26430]/40 hover:text-[#f26430] transition-colors"
+          >
+            🎯 Predict My Rank
           </a>
           <button onClick={() => setShowCounsel(true)} className="btn-orange px-4 py-2 text-sm rounded-full">
             Free Counselling
@@ -264,7 +270,7 @@ export default function HomePage() {
 
               <div className="space-y-4">
                 <label className="block space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-[.25em] text-[#123d63]">Your NEET Score</span>
+                  <span className="text-xs font-bold uppercase tracking-[.25em] text-[#123d63]">Estimated NEET Score</span>
                   <div className="rounded-[1.5rem] border border-[#123d63]/12 bg-white p-1.5 shadow-sm focus-within:border-[#f26430] focus-within:shadow-[0_0_0_3px_rgba(242,100,48,.1)] transition-all">
                     <input
                       value={score}
@@ -293,7 +299,7 @@ export default function HomePage() {
                 </button>
 
                 <div className="flex flex-wrap items-center justify-center gap-4 pt-1">
-                  {["Instant results", "Free to use", "Expert counselling"].map((t) => (
+                  {["Instant predictions", "Free to use", "Expert counselling"].map((t) => (
                     <div key={t} className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#f26430]" />
                       {t}
