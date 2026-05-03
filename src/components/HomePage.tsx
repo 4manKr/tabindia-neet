@@ -199,9 +199,9 @@ export default function HomePage() {
           {/* MOBILE-ONLY headline — above predictor on small screens */}
           <div className="lg:hidden mb-6 space-y-3">
             <h1 className="headline text-3xl font-black leading-tight text-[#0a2844] sm:text-4xl">
-              Know your NEET 2026 rank
+              Know your NEET 2026
               <br />
-              <span className="text-[#f26430]">in seconds.</span>
+              <span className="text-[#f26430]">rank in seconds.</span>
             </h1>
             <p className="text-base leading-7 text-slate-600">
               Enter your estimated score and get an instant rank prediction.
@@ -217,9 +217,9 @@ export default function HomePage() {
               {/* desktop-only headline + subtitle */}
               <div className="hidden lg:block space-y-4">
                 <h1 className="headline text-4xl font-black leading-tight text-[#0a2844] xl:text-5xl">
-                  Know your NEET 2026 rank
+                  Know your NEET 2026
                   <br />
-                  <span className="text-[#f26430]">in seconds.</span>
+                  <span className="text-[#f26430]">rank in seconds.</span>
                 </h1>
                 <p className="text-lg leading-8 text-slate-600">
                   Enter your estimated score and get an instant rank prediction. Then book a free
@@ -227,15 +227,15 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="fade-up-2 flex flex-wrap gap-3">
+              <div className="fade-up-2 grid grid-cols-3 gap-3">
                 {[
-                  { icon: "⚡", text: "Instant rank prediction" },
                   { icon: "🎓", text: "Expert counselling" },
                   { icon: "🏥", text: "Medical college guidance" },
                   { icon: "✅", text: "Completely free" },
                 ].map((p) => (
-                  <div key={p.text} className="flex items-center gap-2 rounded-full border border-[#123d63]/10 bg-white px-4 py-2 text-sm font-semibold text-[#123d63] shadow-sm">
-                    <span>{p.icon}</span> {p.text}
+                  <div key={p.text} className="flex flex-col items-center gap-2 rounded-2xl border border-[#123d63]/10 bg-white px-3 py-4 text-center text-xs font-semibold text-[#123d63] shadow-sm">
+                    <span className="text-2xl">{p.icon}</span>
+                    <span>{p.text}</span>
                   </div>
                 ))}
               </div>
