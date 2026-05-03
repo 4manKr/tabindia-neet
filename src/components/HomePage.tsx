@@ -214,9 +214,6 @@ export default function HomePage() {
             {/* LEFT — logo + desktop headline + pills + counselling */}
             <div className="order-last lg:order-first space-y-6">
 
-              {/* logo — desktop: top of left col, aligns with predictor top */}
-              <img src="/brand/tab-india-logo.png" alt="TAB India" className="hidden lg:block h-24 w-auto object-contain" />
-
               {/* desktop-only headline + subtitle */}
               <div className="hidden lg:block space-y-4">
                 <h1 className="headline text-4xl font-black leading-tight text-[#0a2844] xl:text-5xl">
