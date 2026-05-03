@@ -200,7 +200,8 @@ export default function HomePage() {
           <div className="fade-up space-y-4">
             <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-20 sm:h-24 w-auto object-contain" />
             <h1 className="headline text-3xl font-black leading-tight text-[#0a2844] sm:text-4xl lg:text-5xl xl:text-6xl">
-              Know your NEET 2026 rank{" "}
+              Know your NEET 2026 rank
+              <br />
               <span className="text-[#f26430]">in seconds.</span>
             </h1>
             <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
