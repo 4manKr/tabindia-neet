@@ -196,25 +196,39 @@ export default function HomePage() {
         {/* ── HERO ── */}
         <section className="mb-14">
 
-          {/* LOGO + HEADLINE — always on top, all screen sizes */}
-          <div className="mb-8 space-y-4">
-            <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-20 sm:h-24 w-auto object-contain" />
-            <h1 className="headline text-3xl font-black leading-tight text-[#0a2844] sm:text-4xl lg:text-5xl xl:text-6xl">
+          {/* MOBILE-ONLY headline — above predictor on small screens */}
+          <div className="lg:hidden mb-6 space-y-3">
+            <h1 className="headline text-3xl font-black leading-tight text-[#0a2844] sm:text-4xl">
               Know your NEET 2026 rank
               <br />
               <span className="text-[#f26430]">in seconds.</span>
             </h1>
-            <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-              Enter your estimated score and get an instant rank prediction. Then book a free
-              counselling session with TAB India experts to plan your next steps.
+            <p className="text-base leading-7 text-slate-600">
+              Enter your estimated score and get an instant rank prediction.
             </p>
           </div>
 
-          {/* TWO-COLUMN: pills+counselling (left) | predictor (right) */}
+          {/* TWO-COLUMN: logo+headline+pills (left) | predictor (right) */}
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
 
-            {/* LEFT — pills + counselling; below predictor on mobile */}
+            {/* LEFT — logo + desktop headline + pills + counselling */}
             <div className="order-last lg:order-first space-y-6">
+
+              {/* logo — desktop: top of left col, aligns with predictor top */}
+              <img src="/brand/tab-india-logo.png" alt="TAB India" className="hidden lg:block h-24 w-auto object-contain" />
+
+              {/* desktop-only headline + subtitle */}
+              <div className="hidden lg:block space-y-4">
+                <h1 className="headline text-4xl font-black leading-tight text-[#0a2844] xl:text-5xl">
+                  Know your NEET 2026 rank
+                  <br />
+                  <span className="text-[#f26430]">in seconds.</span>
+                </h1>
+                <p className="text-lg leading-8 text-slate-600">
+                  Enter your estimated score and get an instant rank prediction. Then book a free
+                  counselling session with TAB India experts to plan your next steps.
+                </p>
+              </div>
 
               <div className="fade-up-2 flex flex-wrap gap-3">
                 {[
