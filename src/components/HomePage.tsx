@@ -105,6 +105,11 @@ export default function HomePage() {
         submittedAt:   new Date().toISOString(),
       });
 
+      // fire Meta Pixel Lead event
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq("track", "Lead");
+      }
+
       setResult(prediction);
       setPredName(leadForm.name.trim());
       setShowLead(false);
@@ -139,6 +144,11 @@ export default function HomePage() {
         message:   counselForm.message.trim(),
         submittedAt: new Date().toISOString(),
       });
+      // fire Meta Pixel Contact event
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq("track", "Contact");
+      }
+
       setCounselDone(true);
       setCounselForm(blankCounsel);
     } catch (e) {
