@@ -21,43 +21,78 @@ const PUBLIC_MIN = 0;
 const PUBLIC_MAX = 720;
 
 /**
- * Dynamic rank band — uses score to determine variation width.
- * Higher score → smaller spread (more certainty).
- * Lower score  → larger spread (more uncertainty).
- * Band is always asymmetric and from < to, never equal.
+ * Realistic NEET rank band calculator (rank-proportional approach).
+ *
+ * Rather than absolute widths (which depend on the dataset's base ranks),
+ * we compute the band as a percentage of the predicted rank itself.
+ * This means the band always looks proportional and meaningful regardless
+ * of the score tier.
+ *
+ * Calibrated for ≈ 2.4 M NEET 2026 candidates:
+ *
+ *  Rank tier       | fromPct (lower = better rank) | toPct (upper = worse rank)
+ *  ────────────────|───────────────────────────────|────────────────────────────
+ *  < 100 (toppers) | ×0.50  (lose up to 50%)       | ×2.60
+ *  100 – 500       | ×0.58                         | ×2.20
+ *  500 – 2 000     | ×0.62                         | ×1.90
+ *  2 000 – 8 000   | ×0.66                         | ×1.72
+ *  8 000 – 25 000  | ×0.70                         | ×1.55
+ *  25 000 – 80 000 | ×0.73                         | ×1.45
+ *  80 000 – 200 000| ×0.76                         | ×1.40
+ *  200 000 – 500 000|×0.78                         | ×1.36
+ *  > 500 000       | ×0.80                         | ×1.32
+ *
+ *  Band is always ASYMMETRIC — lower bound tighter than upper.
+ *  Minimum absolute gap enforced so band is never trivial.
+ *  from ≠ to is always guaranteed.
  */
-function calcRankBand(score: number, rank: number): { from: number; to: number } {
-  // Variation percentages by score tier
-  let loPct: number;
-  let hiPct: number;
+function calcRankBand(_score: number, rank: number): { from: number; to: number } {
 
-  if (score >= 620) {
-    loPct = 0.03; hiPct = 0.05;   // ±3–5 %  (toppers — very tight)
-  } else if (score >= 560) {
-    loPct = 0.05; hiPct = 0.09;   // ±5–9 %
-  } else if (score >= 500) {
-    loPct = 0.08; hiPct = 0.13;   // ±8–13 %
-  } else if (score >= 430) {
-    loPct = 0.11; hiPct = 0.17;   // ±11–17 %
-  } else if (score >= 350) {
-    loPct = 0.15; hiPct = 0.22;   // ±15–22 %
-  } else if (score >= 250) {
-    loPct = 0.19; hiPct = 0.28;   // ±19–28 %
+  // ── Step 1: multipliers based on rank tier ─────────────────────────────
+  let fromMult: number;
+  let toMult: number;
+
+  if (rank < 100) {
+    fromMult = 0.50; toMult = 2.60;
+  } else if (rank < 500) {
+    fromMult = 0.58; toMult = 2.20;
+  } else if (rank < 2_000) {
+    fromMult = 0.62; toMult = 1.90;
+  } else if (rank < 8_000) {
+    fromMult = 0.66; toMult = 1.72;
+  } else if (rank < 25_000) {
+    fromMult = 0.70; toMult = 1.55;
+  } else if (rank < 80_000) {
+    fromMult = 0.73; toMult = 1.45;
+  } else if (rank < 200_000) {
+    fromMult = 0.76; toMult = 1.40;
+  } else if (rank < 500_000) {
+    fromMult = 0.78; toMult = 1.36;
   } else {
-    loPct = 0.23; hiPct = 0.34;   // ±23–34 %  (low scorers — widest band)
+    fromMult = 0.80; toMult = 1.32;
   }
 
-  // Minimum absolute gap so band never looks trivial
-  const minGap = rank < 5_000 ? 150 : rank < 50_000 ? 2_000 : rank < 3_00_000 ? 10_000 : 25_000;
+  // ── Step 2: compute raw bounds ─────────────────────────────────────────
+  let from = Math.max(1, Math.round(rank * fromMult));
+  let to   = Math.round(rank * toMult);
 
-  const loVar = Math.max(Math.round(rank * loPct), Math.round(minGap * 0.4));
-  const hiVar = Math.max(Math.round(rank * hiPct), minGap);
+  // ── Step 3: enforce minimum absolute gap ──────────────────────────────
+  const minGap =
+    rank < 200    ?  30   :
+    rank < 1_000  ?  150  :
+    rank < 10_000 ?  800  :
+    rank < 50_000 ?  4_000 :
+    rank < 200_000 ? 15_000 :
+                     40_000;
 
-  const from = Math.max(1, rank - loVar);
-  const to   = rank + hiVar;
+  if (to - from < minGap) {
+    const mid = Math.round((from + to) / 2);
+    from = Math.max(1, mid - Math.round(minGap * 0.38));
+    to   = mid + Math.round(minGap * 0.62);
+  }
 
-  // Guarantee from ≠ to (edge case guard)
-  if (from === to) return { from: Math.max(1, from - 1), to: to + 1 };
+  // ── Step 4: guarantee from ≠ to ────────────────────────────────────────
+  if (from >= to) return { from: Math.max(1, to - minGap), to };
 
   return { from, to };
 }
