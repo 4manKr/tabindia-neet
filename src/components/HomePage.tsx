@@ -162,7 +162,7 @@ export default function HomePage() {
       <header className="glass-panel brand-ring sticky top-3 z-30 mx-3 sm:mx-6 mt-3 flex items-center justify-between rounded-full px-4 py-2.5 shadow-lg shadow-slate-900/5 sm:px-6">
         <div className="flex items-center gap-3">
           <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border border-white/70 bg-white shadow-sm">
-            <img src="/brand/logo.png" alt="TAB India" className="h-full w-full object-contain p-1" />
+            <img src="/brand/logo.png" alt="TAB India" className="h-full w-full object-contain" />
           </div>
           <p className="text-sm font-black uppercase tracking-[.3em] text-[#f26430]">NEET 2026</p>
         </div>
@@ -413,10 +413,6 @@ export default function HomePage() {
                 Expert NEET counselling, rank prediction, and career guidance — helping students
                 secure their dream medical college.
               </p>
-              <div className="space-y-1 text-sm text-white/60">
-                <p className="text-[10px] font-bold uppercase tracking-[.25em] text-white/40">Address</p>
-                <p>C-190, Vivek Vihar, Delhi</p>
-              </div>
             </div>
             <div className="space-y-3">
               <p className="text-xs font-bold uppercase tracking-[.3em] text-white/45">Contact Us</p>
@@ -424,6 +420,10 @@ export default function HomePage() {
                 📞 +91 93114 83555
               </a>
               <p className="text-sm text-white/60">Free counselling & query support.</p>
+              <div className="space-y-1 pt-1">
+                <p className="text-[10px] font-bold uppercase tracking-[.25em] text-white/40">Address</p>
+                <p className="text-sm text-white/60">C-190, Vivek Vihar, Delhi</p>
+              </div>
             </div>
             <div className="space-y-3">
               <p className="text-xs font-bold uppercase tracking-[.3em] text-white/45">Quick Links</p>
@@ -460,14 +460,14 @@ export default function HomePage() {
             </div>
             <form onSubmit={handleLeadSubmit} className="space-y-3 p-4">
               {([
-                ["name",  "Full Name",     "text",  "Your full name"],
-                ["phone", "Phone Number",  "tel",   "+91 XXXXX XXXXX"],
-                ["email", "Email Address", "email", "you@example.com"],
-                ["city",  "City",          "text",  "e.g. Delhi, Mumbai"],
-              ] as const).map(([key, label, type, ph]) => (
+                ["name",  "Full Name *",     "text",  "Your full name",       true],
+                ["phone", "Phone Number *",  "tel",   "+91 XXXXX XXXXX",      true],
+                ["email", "Email Address",   "email", "you@example.com",      false],
+                ["city",  "City",            "text",  "e.g. Delhi, Mumbai",   false],
+              ] as const).map(([key, label, type, ph, req]) => (
                 <label key={key} className="block space-y-1">
                   <span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#123d63]">{label}</span>
-                  <input type={type} required placeholder={ph} value={leadForm[key]}
+                  <input type={type} required={req} placeholder={ph} value={leadForm[key]}
                     onChange={(e) => setLeadForm((f) => ({ ...f, [key]: e.target.value }))}
                     className="input-field py-2 text-sm" />
                 </label>
