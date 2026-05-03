@@ -247,7 +247,7 @@ export default function HomePage() {
                     <p className="text-xs font-bold uppercase tracking-[.35em] text-white/60">Free Counselling</p>
                     <p className="mt-1.5 text-lg font-bold leading-6">
                       Book a free career counselling session with
-                      <br />TAB India Experts.
+                      <br className="hidden lg:block" />TAB India Experts.
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       <button
