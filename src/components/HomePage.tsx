@@ -201,7 +201,7 @@ export default function HomePage() {
             <h1 className="headline text-3xl font-black leading-tight text-[#0a2844] sm:text-4xl">
               Know your NEET 2026
               <br />
-              <span className="text-[#f26430]">rank in seconds.</span>
+              Rank <span className="text-[#f26430]">in seconds.</span>
             </h1>
             <p className="text-base leading-7 text-slate-600">
               Enter your estimated score and get an instant rank prediction.
@@ -219,7 +219,7 @@ export default function HomePage() {
                 <h1 className="headline text-4xl font-black leading-tight text-[#0a2844] xl:text-5xl">
                   Know your NEET 2026
                   <br />
-                  <span className="text-[#f26430]">rank in seconds.</span>
+                  Rank <span className="text-[#f26430]">in seconds.</span>
                 </h1>
                 <p className="text-lg leading-8 text-slate-600">
                   Enter your estimated score and get an instant rank prediction. Then book a free
