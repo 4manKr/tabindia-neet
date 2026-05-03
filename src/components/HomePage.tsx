@@ -166,7 +166,7 @@ export default function HomePage() {
           </div>
           <div className="leading-none">
             <p className="headline text-base font-black text-[#0a2844] tracking-tight">TAB India</p>
-            <p className="text-[10px] font-bold uppercase tracking-[.3em] text-[#f26430]">NEET 2025</p>
+            <p className="text-[10px] font-bold uppercase tracking-[.3em] text-[#f26430]">NEET 2026</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -190,14 +190,14 @@ export default function HomePage() {
             {/* live badge */}
             <div className="fade-up inline-flex items-center gap-2.5 rounded-full border border-[#f26430]/25 bg-[#fff4e7] px-4 py-2 text-sm font-semibold text-[#123d63]">
               <span className="pulse-dot h-2.5 w-2.5 rounded-full bg-[#f26430]" />
-              NEET 2025 Rank Predictor — Official TAB India Tool
+              NEET 2026 Rank Predictor — Official TAB India Tool
             </div>
 
             {/* logo + headline */}
             <div className="fade-up-1 space-y-5">
               <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-20 sm:h-24 w-auto object-contain" />
               <h1 className="headline max-w-2xl text-4xl font-black leading-[1.05] text-[#0a2844] sm:text-5xl lg:text-6xl">
-                Know your NEET 2025 rank{" "}
+                Know your NEET 2026 rank{" "}
                 <span className="text-[#f26430]">in seconds.</span>
               </h1>
               <p className="max-w-xl text-lg leading-8 text-slate-600">
@@ -323,7 +323,7 @@ export default function HomePage() {
                       Congratulations, {predName}! 🎉
                     </h3>
                     <p className="mt-3 max-w-xl text-base leading-7 text-white/80">
-                      Based on the NEET 2025 dataset, here is your estimated rank outlook.
+                      Based on the NEET 2026 dataset, here is your estimated rank outlook.
                     </p>
                   </div>
                   <div className="flex-shrink-0 rounded-2xl bg-white/12 px-5 py-4 text-center">
@@ -389,7 +389,7 @@ export default function HomePage() {
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: "🎯", title: "Accurate Predictions",  body: "Powered by real NEET 2025 score–rank data. Smart nearest-score matching ensures every student gets a result." },
+              { icon: "🎯", title: "Accurate Predictions",  body: "Powered by real NEET 2026 score–rank data. Smart nearest-score matching ensures every student gets a result." },
               { icon: "🏫", title: "College Guidance",       body: "Our counsellors help you identify the best medical colleges based on your rank, category, and state." },
               { icon: "📞", title: "1-on-1 Counselling",    body: "Book a free session with a TAB India expert. We guide you through every step of NEET counselling." },
             ].map((item) => (
@@ -440,48 +440,47 @@ export default function HomePage() {
           <div className="my-8 h-px bg-white/12" />
           <div className="flex flex-col gap-2 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
             <p>© {new Date().getFullYear()} TAB India. All rights reserved.</p>
-            <p>NEET 2025 Rank Predictor — Predictions are estimates only.</p>
+            <p>NEET 2026 Rank Predictor — Predictions are estimates only.</p>
           </div>
         </div>
       </footer>
 
-      {/* ══ LEAD MODAL (Rank Prediction) ══ */}
+      {/* ══ LEAD MODAL ══ */}
       {showLead && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 px-4 py-6 backdrop-blur-sm"
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm"
           onClick={(e) => e.target === e.currentTarget && setShowLead(false)}>
-          <div className="modal-pop brand-shadow w-full max-w-md overflow-hidden rounded-[2rem] border border-white/60 bg-white">
-            <div className="brand-gradient p-6 text-white">
-              <div className="flex items-start justify-between gap-4">
+          <div className="modal-pop brand-shadow w-full max-w-sm overflow-hidden rounded-2xl border border-white/60 bg-white">
+            <div className="brand-gradient px-5 py-4 text-white">
+              <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[.35em] text-white/55">One Last Step</p>
-                  <h3 className="headline mt-2 text-2xl font-black">Unlock Your Rank</h3>
-                  <p className="mt-2 text-sm leading-6 text-white/70">Enter your details to get your personalized rank prediction.</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[.3em] text-white/55">One Last Step</p>
+                  <h3 className="headline mt-1 text-xl font-black">Unlock Your Rank</h3>
                 </div>
-                <button onClick={() => setShowLead(false)} className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white/15 text-white text-xl leading-none hover:bg-white/25 transition-colors" aria-label="Close">×</button>
+                <button onClick={() => setShowLead(false)} className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-white/15 text-white text-lg leading-none hover:bg-white/25" aria-label="Close">×</button>
               </div>
-              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-bold">
-                📊 Score entered: {score}
+              <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-bold">
+                📊 Score: {score}
               </div>
             </div>
-            <form onSubmit={handleLeadSubmit} className="space-y-4 p-6">
+            <form onSubmit={handleLeadSubmit} className="space-y-3 p-4">
               {([
-                ["name",  "Full Name",      "text",  "Your full name"],
-                ["phone", "Phone Number",   "tel",   "+91 XXXXX XXXXX"],
-                ["email", "Email Address",  "email", "you@example.com"],
-                ["city",  "City",           "text",  "e.g. Delhi, Mumbai"],
+                ["name",  "Full Name",     "text",  "Your full name"],
+                ["phone", "Phone Number",  "tel",   "+91 XXXXX XXXXX"],
+                ["email", "Email Address", "email", "you@example.com"],
+                ["city",  "City",          "text",  "e.g. Delhi, Mumbai"],
               ] as const).map(([key, label, type, ph]) => (
-                <label key={key} className="block space-y-1.5">
-                  <span className="text-xs font-bold uppercase tracking-[.2em] text-[#123d63]">{label}</span>
+                <label key={key} className="block space-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#123d63]">{label}</span>
                   <input type={type} required placeholder={ph} value={leadForm[key]}
                     onChange={(e) => setLeadForm((f) => ({ ...f, [key]: e.target.value }))}
-                    className="input-field" />
+                    className="input-field py-2 text-sm" />
                 </label>
               ))}
-              {leadError && <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">{leadError}</p>}
-              <button type="submit" disabled={leadLoading} className="btn-orange w-full py-4 text-base">
-                {leadLoading ? "Calculating your rank…" : "Show My Rank Prediction →"}
+              {leadError && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs font-medium text-red-700">{leadError}</p>}
+              <button type="submit" disabled={leadLoading} className="btn-orange w-full py-3 text-sm">
+                {leadLoading ? "Calculating…" : "Show My Rank Prediction →"}
               </button>
-              <p className="text-center text-xs text-slate-400">Your details are used only for counselling purposes.</p>
+              <p className="text-center text-[10px] text-slate-400">Used only for counselling purposes.</p>
             </form>
           </div>
         </div>
@@ -489,133 +488,120 @@ export default function HomePage() {
 
       {/* ══ COUNSELLING MODAL ══ */}
       {showCounsel && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 px-4 py-4 backdrop-blur-sm overflow-y-auto"
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-3 backdrop-blur-sm"
           onClick={(e) => e.target === e.currentTarget && closeCounsel()}>
-          <div className="modal-pop brand-shadow w-full max-w-lg overflow-hidden rounded-[2rem] border border-white/60 bg-white my-4">
+          <div className="modal-pop brand-shadow w-full max-w-md flex flex-col rounded-2xl border border-white/60 bg-white"
+            style={{ maxHeight: "92vh" }}>
 
-            {/* header */}
-            <div className="brand-gradient p-6 text-white">
-              <div className="flex items-start justify-between gap-4">
+            {/* fixed header */}
+            <div className="brand-gradient flex-shrink-0 px-5 py-3 text-white rounded-t-2xl">
+              <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[.35em] text-white/55">TAB India</p>
-                  <h3 className="headline mt-2 text-2xl font-black">Book Free Counselling</h3>
-                  <p className="mt-2 text-sm leading-6 text-white/70">
-                    Fill in your details and our expert counsellor will reach out within 24 hours.
-                  </p>
+                  <p className="text-[10px] font-bold uppercase tracking-[.3em] text-white/55">TAB India</p>
+                  <h3 className="headline mt-0.5 text-xl font-black">Book Free Counselling</h3>
                 </div>
-                <button onClick={closeCounsel} className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white/15 text-white text-xl leading-none hover:bg-white/25 transition-colors" aria-label="Close">×</button>
+                <button onClick={closeCounsel} className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-white/15 text-white text-lg leading-none hover:bg-white/25" aria-label="Close">×</button>
               </div>
             </div>
 
-            {counselDone ? (
-              /* ── success state ── */
-              <div className="p-8 text-center space-y-4">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-4xl">🎉</div>
-                <h4 className="headline text-2xl font-black text-[#0a2844]">Request Submitted!</h4>
-                <p className="text-slate-600 leading-6">
-                  Thank you! A TAB India counsellor will contact you within <strong>24 hours</strong> to schedule your free session.
-                </p>
-                <p className="text-sm text-slate-500">
-                  For urgent queries, call us at{" "}
-                  <a href="tel:+919311483555" className="font-bold text-[#f26430]">+91 93114 83555</a>
-                </p>
-                <button onClick={closeCounsel} className="btn-orange rounded-2xl px-8 py-3 text-sm mt-2">Done</button>
-              </div>
-            ) : (
-              /* ── form ── */
-              <form onSubmit={handleCounselSubmit} className="p-6 space-y-4">
-
-                {/* row 1: name + phone */}
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="block space-y-1.5">
-                    <span className="field-label">Full Name <span className="text-[#f26430]">*</span></span>
-                    <input type="text" required placeholder="Your full name" value={counselForm.name}
-                      onChange={(e) => setCounselForm((f) => ({ ...f, name: e.target.value }))}
-                      className="input-field" />
-                  </label>
-                  <label className="block space-y-1.5">
-                    <span className="field-label">Phone Number <span className="text-[#f26430]">*</span></span>
-                    <input type="tel" required placeholder="+91 XXXXX XXXXX" value={counselForm.phone}
-                      onChange={(e) => setCounselForm((f) => ({ ...f, phone: e.target.value }))}
-                      className="input-field" />
-                  </label>
+            {/* scrollable body */}
+            <div className="overflow-y-auto flex-1 overscroll-contain">
+              {counselDone ? (
+                <div className="p-6 text-center space-y-3">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-3xl">🎉</div>
+                  <h4 className="headline text-xl font-black text-[#0a2844]">Request Submitted!</h4>
+                  <p className="text-sm text-slate-600 leading-6">A TAB India counsellor will contact you within <strong>24 hours</strong>.</p>
+                  <p className="text-xs text-slate-500">Urgent? Call <a href="tel:+919311483555" className="font-bold text-[#f26430]">+91 93114 83555</a></p>
+                  <button onClick={closeCounsel} className="btn-orange rounded-xl px-8 py-2.5 text-sm">Done</button>
                 </div>
-
-                {/* email */}
-                <label className="block space-y-1.5">
-                  <span className="field-label">Email Address <span className="text-[#f26430]">*</span></span>
-                  <input type="email" required placeholder="you@example.com" value={counselForm.email}
-                    onChange={(e) => setCounselForm((f) => ({ ...f, email: e.target.value }))}
-                    className="input-field" />
-                </label>
-
-                {/* row 2: city + state */}
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="block space-y-1.5">
-                    <span className="field-label">City <span className="text-[#f26430]">*</span></span>
-                    <input type="text" required placeholder="e.g. Delhi" value={counselForm.city}
-                      onChange={(e) => setCounselForm((f) => ({ ...f, city: e.target.value }))}
-                      className="input-field" />
+              ) : (
+                <form onSubmit={handleCounselSubmit} className="p-4 space-y-3">
+                  {/* name + phone */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <label className="block space-y-1">
+                      <span className="field-label">Name <span className="text-[#f26430]">*</span></span>
+                      <input type="text" required placeholder="Full name" value={counselForm.name}
+                        onChange={(e) => setCounselForm((f) => ({ ...f, name: e.target.value }))}
+                        className="input-field py-2 text-sm" />
+                    </label>
+                    <label className="block space-y-1">
+                      <span className="field-label">Phone <span className="text-[#f26430]">*</span></span>
+                      <input type="tel" required placeholder="+91 XXXXX" value={counselForm.phone}
+                        onChange={(e) => setCounselForm((f) => ({ ...f, phone: e.target.value }))}
+                        className="input-field py-2 text-sm" />
+                    </label>
+                  </div>
+                  {/* email */}
+                  <label className="block space-y-1">
+                    <span className="field-label">Email <span className="text-[#f26430]">*</span></span>
+                    <input type="email" required placeholder="you@example.com" value={counselForm.email}
+                      onChange={(e) => setCounselForm((f) => ({ ...f, email: e.target.value }))}
+                      className="input-field py-2 text-sm" />
                   </label>
-                  <label className="block space-y-1.5">
-                    <span className="field-label">State <span className="text-[#f26430]">*</span></span>
-                    <select required value={counselForm.state}
-                      onChange={(e) => setCounselForm((f) => ({ ...f, state: e.target.value }))}
-                      className="input-field">
-                      <option value="">Select state</option>
-                      {STATES.map((s) => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                  </label>
-                </div>
-
-                {/* row 3: category + course */}
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="block space-y-1.5">
-                    <span className="field-label">Category <span className="text-[#f26430]">*</span></span>
-                    <select required value={counselForm.category}
-                      onChange={(e) => setCounselForm((f) => ({ ...f, category: e.target.value }))}
-                      className="input-field">
-                      <option value="">Select category</option>
-                      {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                  </label>
-                  <label className="block space-y-1.5">
-                    <span className="field-label">Preferred Course <span className="text-[#f26430]">*</span></span>
-                    <select required value={counselForm.course}
-                      onChange={(e) => setCounselForm((f) => ({ ...f, course: e.target.value }))}
-                      className="input-field">
-                      <option value="">Select course</option>
-                      {COURSES.map((c) => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                  </label>
-                </div>
-
-                {/* NEET score */}
-                <label className="block space-y-1.5">
-                  <span className="field-label">NEET 2025 Score (if known)</span>
-                  <input type="number" min={0} max={720} placeholder="e.g. 580" value={counselForm.neetScore}
-                    onChange={(e) => setCounselForm((f) => ({ ...f, neetScore: e.target.value }))}
-                    className="input-field" />
-                </label>
-
-                {/* message */}
-                <label className="block space-y-1.5">
-                  <span className="field-label">Your Query (optional)</span>
-                  <textarea rows={3} placeholder="Any specific question or requirement…" value={counselForm.message}
-                    onChange={(e) => setCounselForm((f) => ({ ...f, message: e.target.value }))}
-                    className="input-field resize-none" />
-                </label>
-
-                {counselError && (
-                  <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">{counselError}</p>
-                )}
-
-                <button type="submit" disabled={counselLoading} className="btn-orange w-full py-4 text-base">
-                  {counselLoading ? "Submitting…" : "Submit & Book My Free Session →"}
-                </button>
-                <p className="text-center text-xs text-slate-400">Our counsellor will contact you within 24 hours.</p>
-              </form>
-            )}
+                  {/* city + state */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <label className="block space-y-1">
+                      <span className="field-label">City <span className="text-[#f26430]">*</span></span>
+                      <input type="text" required placeholder="e.g. Delhi" value={counselForm.city}
+                        onChange={(e) => setCounselForm((f) => ({ ...f, city: e.target.value }))}
+                        className="input-field py-2 text-sm" />
+                    </label>
+                    <label className="block space-y-1">
+                      <span className="field-label">State <span className="text-[#f26430]">*</span></span>
+                      <select required value={counselForm.state}
+                        onChange={(e) => setCounselForm((f) => ({ ...f, state: e.target.value }))}
+                        className="input-field py-2 text-sm">
+                        <option value="">Select</option>
+                        {STATES.map((s) => <option key={s} value={s}>{s}</option>)}
+                      </select>
+                    </label>
+                  </div>
+                  {/* category + course */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <label className="block space-y-1">
+                      <span className="field-label">Category <span className="text-[#f26430]">*</span></span>
+                      <select required value={counselForm.category}
+                        onChange={(e) => setCounselForm((f) => ({ ...f, category: e.target.value }))}
+                        className="input-field py-2 text-sm">
+                        <option value="">Select</option>
+                        {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                      </select>
+                    </label>
+                    <label className="block space-y-1">
+                      <span className="field-label">Course <span className="text-[#f26430]">*</span></span>
+                      <select required value={counselForm.course}
+                        onChange={(e) => setCounselForm((f) => ({ ...f, course: e.target.value }))}
+                        className="input-field py-2 text-sm">
+                        <option value="">Select</option>
+                        {COURSES.map((c) => <option key={c} value={c}>{c}</option>)}
+                      </select>
+                    </label>
+                  </div>
+                  {/* NEET score + message side by side */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <label className="block space-y-1">
+                      <span className="field-label">NEET Score</span>
+                      <input type="number" min={0} max={720} placeholder="e.g. 580" value={counselForm.neetScore}
+                        onChange={(e) => setCounselForm((f) => ({ ...f, neetScore: e.target.value }))}
+                        className="input-field py-2 text-sm" />
+                    </label>
+                    <label className="block space-y-1">
+                      <span className="field-label">Query</span>
+                      <input type="text" placeholder="Any question…" value={counselForm.message}
+                        onChange={(e) => setCounselForm((f) => ({ ...f, message: e.target.value }))}
+                        className="input-field py-2 text-sm" />
+                    </label>
+                  </div>
+                  {counselError && (
+                    <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs font-medium text-red-700">{counselError}</p>
+                  )}
+                  <button type="submit" disabled={counselLoading} className="btn-orange w-full py-3 text-sm">
+                    {counselLoading ? "Submitting…" : "Submit & Book My Free Session →"}
+                  </button>
+                  <p className="text-center text-[10px] text-slate-400">Our counsellor will contact you within 24 hours.</p>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       )}
