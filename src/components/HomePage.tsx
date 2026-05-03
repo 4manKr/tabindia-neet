@@ -406,11 +406,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="h-14 w-14 overflow-hidden rounded-xl border border-white/30 bg-white shadow-sm">
-                  <img src="/brand/logo.png" alt="TAB India" className="h-full w-full object-contain p-1" />
-                </div>
-                <p className="text-sm font-black uppercase tracking-[.3em] text-[#f26430]">NEET 2026</p>
+              <div className="h-14 w-14 overflow-hidden rounded-xl border border-white/30 bg-white shadow-sm">
+                <img src="/brand/logo.png" alt="TAB India" className="h-full w-full object-contain p-1" />
               </div>
               <p className="max-w-xs text-sm leading-6 text-white/65">
                 Expert NEET counselling, rank prediction, and career guidance — helping students
