@@ -161,9 +161,7 @@ export default function HomePage() {
       {/* ══ HEADER ══ */}
       <header className="glass-panel brand-ring sticky top-3 z-30 mx-3 sm:mx-6 mt-3 flex items-center justify-between rounded-full px-4 py-2.5 shadow-lg shadow-slate-900/5 sm:px-6">
         <div className="flex items-center gap-3">
-          <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border border-white/70 bg-white shadow-sm">
-            <img src="/brand/logo.png" alt="TAB India" className="h-full w-full object-contain" />
-          </div>
+          <img src="/brand/logo.png" alt="TAB India" className="h-10 w-auto object-contain flex-shrink-0" />
           <p className="text-sm font-black uppercase tracking-[.3em] text-[#f26430]">NEET 2026</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
