@@ -161,13 +161,10 @@ export default function HomePage() {
       {/* ══ HEADER ══ */}
       <header className="glass-panel brand-ring sticky top-3 z-30 mx-3 sm:mx-6 mt-3 flex items-center justify-between rounded-full px-4 py-2.5 shadow-lg shadow-slate-900/5 sm:px-6">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-xl border border-white/70 bg-white shadow-sm">
+          <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border border-white/70 bg-white shadow-sm">
             <img src="/brand/logo.png" alt="TAB India" className="h-full w-full object-contain p-1" />
           </div>
-          <div className="leading-none">
-            <p className="headline text-base font-black text-[#0a2844] tracking-tight">TAB India</p>
-            <p className="text-[10px] font-bold uppercase tracking-[.3em] text-[#f26430]">NEET 2026</p>
-          </div>
+          <p className="text-sm font-black uppercase tracking-[.3em] text-[#f26430]">NEET 2026</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           <a href="tel:+919311483555" className="hidden sm:flex items-center gap-2 text-sm font-semibold text-[#123d63] hover:text-[#f26430] transition-colors">
@@ -189,69 +186,9 @@ export default function HomePage() {
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-20 pt-8 sm:px-6 lg:px-8">
 
         {/* ── HERO GRID ── */}
-        <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14 mb-14">
+        <section className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14 mb-14">
 
-          {/* LEFT */}
-          <div className="space-y-7">
-            {/* live badge */}
-            <div className="fade-up inline-flex items-center gap-2.5 rounded-full border border-[#f26430]/25 bg-[#fff4e7] px-4 py-2 text-sm font-semibold text-[#123d63]">
-              <span className="pulse-dot h-2.5 w-2.5 rounded-full bg-[#f26430]" />
-              NEET 2026 Rank Predictor — Official TAB India Tool
-            </div>
-
-            {/* logo + headline */}
-            <div className="fade-up-1 space-y-5">
-              <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-20 sm:h-24 w-auto object-contain" />
-              <h1 className="headline max-w-2xl text-4xl font-black leading-[1.05] text-[#0a2844] sm:text-5xl lg:text-6xl">
-                Know your NEET 2026 rank{" "}
-                <span className="text-[#f26430]">in seconds.</span>
-              </h1>
-              <p className="max-w-xl text-lg leading-8 text-slate-600">
-                Enter your estimated score and get an instant rank prediction. Then book a free
-                counselling session with TAB India experts to plan your next steps.
-              </p>
-            </div>
-
-            {/* feature pills — replaces internal stat cards */}
-            <div className="fade-up-2 flex flex-wrap gap-3">
-              {[
-                { icon: "⚡", text: "Instant rank prediction" },
-                { icon: "🎓", text: "Expert counselling" },
-                { icon: "🏥", text: "Medical college guidance" },
-                { icon: "✅", text: "Completely free" },
-              ].map((p) => (
-                <div key={p.text} className="flex items-center gap-2 rounded-full border border-[#123d63]/10 bg-white px-4 py-2 text-sm font-semibold text-[#123d63] shadow-sm">
-                  <span>{p.icon}</span> {p.text}
-                </div>
-              ))}
-            </div>
-
-            {/* counselling card */}
-            <div className="fade-up-3 floating brand-gradient brand-shadow max-w-lg rounded-[1.75rem] p-5 text-white">
-              <div className="flex items-start gap-4">
-                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-white/15 text-xl">🎓</div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[.35em] text-white/60">Free Counselling</p>
-                  <p className="mt-1.5 text-lg font-bold leading-6">
-                    Book a free career counselling session with TAB India experts.
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <button
-                      onClick={() => setShowCounsel(true)}
-                      className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-bold hover:bg-white/30 transition-colors"
-                    >
-                      🗓 Book Free Session
-                    </button>
-                    <a href="tel:+919311483555" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold hover:bg-white/20 transition-colors">
-                      📞 Call Us
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT — predictor card */}
+          {/* LEFT — predictor card (shown first) */}
           <div className="relative" id="predictor">
             <div className="pointer-events-none absolute -left-6 top-8 h-40 w-40 rounded-full bg-[#f26430]/20 blur-3xl" />
             <div className="pointer-events-none absolute bottom-8 -right-4 h-44 w-44 rounded-full bg-[#123d63]/15 blur-3xl" />
@@ -315,6 +252,61 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+
+          {/* RIGHT — hero content */}
+          <div className="space-y-7">
+            {/* logo + headline */}
+            <div className="fade-up-1 space-y-5">
+              <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-20 sm:h-24 w-auto object-contain" />
+              <h1 className="headline max-w-2xl text-4xl font-black leading-[1.05] text-[#0a2844] sm:text-5xl lg:text-6xl">
+                Know your NEET 2026 rank{" "}
+                <span className="text-[#f26430]">in seconds.</span>
+              </h1>
+              <p className="max-w-xl text-lg leading-8 text-slate-600">
+                Enter your estimated score and get an instant rank prediction. Then book a free
+                counselling session with TAB India experts to plan your next steps.
+              </p>
+            </div>
+
+            {/* feature pills */}
+            <div className="fade-up-2 flex flex-wrap gap-3">
+              {[
+                { icon: "⚡", text: "Instant rank prediction" },
+                { icon: "🎓", text: "Expert counselling" },
+                { icon: "🏥", text: "Medical college guidance" },
+                { icon: "✅", text: "Completely free" },
+              ].map((p) => (
+                <div key={p.text} className="flex items-center gap-2 rounded-full border border-[#123d63]/10 bg-white px-4 py-2 text-sm font-semibold text-[#123d63] shadow-sm">
+                  <span>{p.icon}</span> {p.text}
+                </div>
+              ))}
+            </div>
+
+            {/* counselling card */}
+            <div className="fade-up-3 floating brand-gradient brand-shadow max-w-lg rounded-[1.75rem] p-5 text-white">
+              <div className="flex items-start gap-4">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-white/15 text-xl">🎓</div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[.35em] text-white/60">Free Counselling</p>
+                  <p className="mt-1.5 text-lg font-bold leading-6">
+                    Book a free career counselling session with TAB India experts.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <button
+                      onClick={() => setShowCounsel(true)}
+                      className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-bold hover:bg-white/30 transition-colors"
+                    >
+                      🗓 Book Free Session
+                    </button>
+                    <a href="tel:+919311483555" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold hover:bg-white/20 transition-colors">
+                      📞 Call Us
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </section>
 
         {/* ══ RESULTS ══ */}
@@ -415,18 +407,19 @@ export default function HomePage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 overflow-hidden rounded-xl border border-white/30 bg-white/10">
+                <div className="h-14 w-14 overflow-hidden rounded-xl border border-white/30 bg-white shadow-sm">
                   <img src="/brand/logo.png" alt="TAB India" className="h-full w-full object-contain p-1" />
                 </div>
-                <div>
-                  <p className="headline text-base font-black text-white">TAB India</p>
-                  <p className="text-[10px] font-bold uppercase tracking-[.3em] text-white/55">NEET Counselling</p>
-                </div>
+                <p className="text-sm font-black uppercase tracking-[.3em] text-[#f26430]">NEET 2026</p>
               </div>
               <p className="max-w-xs text-sm leading-6 text-white/65">
                 Expert NEET counselling, rank prediction, and career guidance — helping students
                 secure their dream medical college.
               </p>
+              <div className="space-y-1 text-sm text-white/60">
+                <p className="text-[10px] font-bold uppercase tracking-[.25em] text-white/40">Address</p>
+                <p>C-190, Vivek Vihar, Delhi</p>
+              </div>
             </div>
             <div className="space-y-3">
               <p className="text-xs font-bold uppercase tracking-[.3em] text-white/45">Contact Us</p>
