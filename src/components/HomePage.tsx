@@ -170,7 +170,7 @@ export default function HomePage() {
           </a>
           <a
             href="#predictor"
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#123d63]/20 bg-white px-4 py-2 text-sm font-bold text-[#123d63] shadow-sm hover:border-[#f26430]/40 hover:text-[#f26430] transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-[#123d63]/20 bg-white px-4 py-2 text-sm font-bold text-[#123d63] shadow-sm hover:border-[#f26430]/40 hover:text-[#f26430] transition-colors"
           >
             🎯 Predict My Rank
           </a>
@@ -183,128 +183,143 @@ export default function HomePage() {
       {/* ══ MAIN ══ */}
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-20 pt-8 sm:px-6 lg:px-8">
 
-        {/* ── HERO GRID ── */}
-        <section className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14 mb-14">
+        {/* ── HERO ── */}
+        <section className="mb-14 space-y-8">
 
-          {/* LEFT — predictor card (shown first) */}
-          <div className="relative" id="predictor">
-            <div className="pointer-events-none absolute -left-6 top-8 h-40 w-40 rounded-full bg-[#f26430]/20 blur-3xl" />
-            <div className="pointer-events-none absolute bottom-8 -right-4 h-44 w-44 rounded-full bg-[#123d63]/15 blur-3xl" />
-
-            <div className="slide-right brand-shadow glass-panel relative overflow-hidden rounded-[2rem] border border-white/75 p-6 sm:p-8">
-              <div className="mb-6 flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[.35em] text-[#f26430]">Live Predictor</p>
-                  <h2 className="headline mt-2 text-3xl font-black text-[#0a2844]">Predict My Rank</h2>
-                </div>
-                <div className="rounded-2xl border border-[#123d63]/10 bg-white px-4 py-2.5 text-right">
-                  <p className="text-[10px] font-bold uppercase tracking-[.25em] text-slate-400">Score Range</p>
-                  <p className="headline mt-1 text-xl font-black text-[#123d63]">0 – 720</p>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <label className="block space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-[.25em] text-[#123d63]">Estimated NEET Score</span>
-                  <div className="rounded-[1.5rem] border border-[#123d63]/12 bg-white p-1.5 shadow-sm focus-within:border-[#f26430] focus-within:shadow-[0_0_0_3px_rgba(242,100,48,.1)] transition-all">
-                    <input
-                      value={score}
-                      onChange={(e) => { setScore(e.target.value); setScoreError(null); }}
-                      type="number" min={0} max={720} step={1} placeholder="e.g. 587"
-                      className="w-full rounded-[1.1rem] border-0 bg-transparent px-4 py-3.5 text-3xl font-black text-[#0a2844] outline-none placeholder:text-slate-200"
-                    />
-                  </div>
-                </label>
-
-                {validScore && (
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold text-slate-400">
-                      <span>0</span>
-                      <span className="text-[#f26430]">{scoreNum} / 720</span>
-                      <span>720</span>
-                    </div>
-                    <div className="score-bar-track">
-                      <div className="score-bar-fill" style={{ width: `${pct}%` }} />
-                    </div>
-                  </div>
-                )}
-
-                <button onClick={openLead} className="btn-orange w-full py-4 text-lg">
-                  Get My Rank Prediction →
-                </button>
-
-                <div className="flex flex-wrap items-center justify-center gap-4 pt-1">
-                  {["Instant predictions", "Free to use", "Expert counselling"].map((t) => (
-                    <div key={t} className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#f26430]" />
-                      {t}
-                    </div>
-                  ))}
-                </div>
-
-                {scoreError && (
-                  <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
-                    {scoreError}
-                  </p>
-                )}
-              </div>
-            </div>
+          {/* HEADLINE — full width, desktop only (hidden on mobile) */}
+          <div className="hidden lg:block fade-up space-y-4">
+            <h1 className="headline text-5xl font-black leading-[1.05] text-[#0a2844] xl:text-6xl">
+              Know your NEET 2026 rank{" "}
+              <span className="text-[#f26430]">in seconds.</span>
+            </h1>
+            <p className="max-w-2xl text-lg leading-8 text-slate-600">
+              Enter your estimated score and get an instant rank prediction. Then book a free
+              counselling session with TAB India experts to plan your next steps.
+            </p>
           </div>
 
-          {/* RIGHT — hero content */}
-          <div className="space-y-7">
-            {/* logo + headline */}
-            <div className="fade-up-1 space-y-5">
-              <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-20 sm:h-24 w-auto object-contain" />
-              <h1 className="headline max-w-2xl text-4xl font-black leading-[1.05] text-[#0a2844] sm:text-5xl lg:text-6xl">
-                Know your NEET 2026 rank{" "}
-                <span className="text-[#f26430]">in seconds.</span>
-              </h1>
-              <p className="max-w-xl text-lg leading-8 text-slate-600">
-                Enter your estimated score and get an instant rank prediction. Then book a free
-                counselling session with TAB India experts to plan your next steps.
-              </p>
-            </div>
+          {/* TWO-COLUMN: logo+pills (left) | predictor (right) */}
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
 
-            {/* feature pills */}
-            <div className="fade-up-2 flex flex-wrap gap-3">
-              {[
-                { icon: "⚡", text: "Instant rank prediction" },
-                { icon: "🎓", text: "Expert counselling" },
-                { icon: "🏥", text: "Medical college guidance" },
-                { icon: "✅", text: "Completely free" },
-              ].map((p) => (
-                <div key={p.text} className="flex items-center gap-2 rounded-full border border-[#123d63]/10 bg-white px-4 py-2 text-sm font-semibold text-[#123d63] shadow-sm">
-                  <span>{p.icon}</span> {p.text}
-                </div>
-              ))}
-            </div>
+            {/* LEFT — logo + pills + counselling (desktop); shown below predictor on mobile via order */}
+            <div className="order-2 lg:order-1 space-y-6">
 
-            {/* counselling card */}
-            <div className="fade-up-3 floating brand-gradient brand-shadow max-w-lg rounded-[1.75rem] p-5 text-white">
-              <div className="flex items-start gap-4">
-                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-white/15 text-xl">🎓</div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[.35em] text-white/60">Free Counselling</p>
-                  <p className="mt-1.5 text-lg font-bold leading-6">
-                    Book a free career counselling session with TAB India experts.
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <button
-                      onClick={() => setShowCounsel(true)}
-                      className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-bold hover:bg-white/30 transition-colors"
-                    >
-                      🗓 Book Free Session
-                    </button>
-                    <a href="tel:+919311483555" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold hover:bg-white/20 transition-colors">
-                      📞 Call Us
-                    </a>
+              {/* Mobile-only headline */}
+              <div className="lg:hidden fade-up space-y-3">
+                <h1 className="headline text-3xl font-black leading-tight text-[#0a2844] sm:text-4xl">
+                  Know your NEET 2026 rank{" "}
+                  <span className="text-[#f26430]">in seconds.</span>
+                </h1>
+                <p className="text-base leading-7 text-slate-600">
+                  Enter your estimated score and get an instant rank prediction.
+                </p>
+              </div>
+
+              <img src="/brand/tab-india-logo.png" alt="TAB India" className="h-24 sm:h-28 w-auto object-contain" />
+
+              <div className="fade-up-2 flex flex-wrap gap-3">
+                {[
+                  { icon: "⚡", text: "Instant rank prediction" },
+                  { icon: "🎓", text: "Expert counselling" },
+                  { icon: "🏥", text: "Medical college guidance" },
+                  { icon: "✅", text: "Completely free" },
+                ].map((p) => (
+                  <div key={p.text} className="flex items-center gap-2 rounded-full border border-[#123d63]/10 bg-white px-4 py-2 text-sm font-semibold text-[#123d63] shadow-sm">
+                    <span>{p.icon}</span> {p.text}
+                  </div>
+                ))}
+              </div>
+
+              <div className="fade-up-3 floating brand-gradient brand-shadow rounded-[1.75rem] p-5 text-white">
+                <div className="flex items-start gap-4">
+                  <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-white/15 text-xl">🎓</div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[.35em] text-white/60">Free Counselling</p>
+                    <p className="mt-1.5 text-lg font-bold leading-6">
+                      Book a free career counselling session with TAB India experts.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <button
+                        onClick={() => setShowCounsel(true)}
+                        className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-bold hover:bg-white/30 transition-colors"
+                      >
+                        🗓 Book Free Session
+                      </button>
+                      <a href="tel:+919311483555" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold hover:bg-white/20 transition-colors">
+                        📞 Call Us
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
+            {/* RIGHT — predictor card (order-1 = first on mobile) */}
+            <div className="relative order-1 lg:order-2" id="predictor">
+              <div className="pointer-events-none absolute -left-6 top-8 h-40 w-40 rounded-full bg-[#f26430]/20 blur-3xl" />
+              <div className="pointer-events-none absolute bottom-8 -right-4 h-44 w-44 rounded-full bg-[#123d63]/15 blur-3xl" />
+
+              <div className="slide-right brand-shadow glass-panel relative overflow-hidden rounded-[2rem] border border-white/75 p-6 sm:p-8">
+                <div className="mb-6 flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[.35em] text-[#f26430]">Live Predictor</p>
+                    <h2 className="headline mt-2 text-3xl font-black text-[#0a2844]">Predict My Rank</h2>
+                  </div>
+                  <div className="rounded-2xl border border-[#123d63]/10 bg-white px-4 py-2.5 text-right">
+                    <p className="text-[10px] font-bold uppercase tracking-[.25em] text-slate-400">Score Range</p>
+                    <p className="headline mt-1 text-xl font-black text-[#123d63]">0 – 720</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <label className="block space-y-2">
+                    <span className="text-xs font-bold uppercase tracking-[.25em] text-[#123d63]">Estimated NEET Score</span>
+                    <div className="rounded-[1.5rem] border border-[#123d63]/12 bg-white p-1.5 shadow-sm focus-within:border-[#f26430] focus-within:shadow-[0_0_0_3px_rgba(242,100,48,.1)] transition-all">
+                      <input
+                        value={score}
+                        onChange={(e) => { setScore(e.target.value); setScoreError(null); }}
+                        type="number" min={0} max={720} step={1} placeholder="e.g. 587"
+                        className="w-full rounded-[1.1rem] border-0 bg-transparent px-4 py-3.5 text-3xl font-black text-[#0a2844] outline-none placeholder:text-slate-200"
+                      />
+                    </div>
+                  </label>
+
+                  {validScore && (
+                    <div className="space-y-1.5">
+                      <div className="flex justify-between text-xs font-semibold text-slate-400">
+                        <span>0</span>
+                        <span className="text-[#f26430]">{scoreNum} / 720</span>
+                        <span>720</span>
+                      </div>
+                      <div className="score-bar-track">
+                        <div className="score-bar-fill" style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                  )}
+
+                  <button onClick={openLead} className="btn-orange w-full py-4 text-lg">
+                    Get My Rank Prediction →
+                  </button>
+
+                  <div className="flex flex-wrap items-center justify-center gap-4 pt-1">
+                    {["Instant predictions", "Free to use", "Expert counselling"].map((t) => (
+                      <div key={t} className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#f26430]" />
+                        {t}
+                      </div>
+                    ))}
+                  </div>
+
+                  {scoreError && (
+                    <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                      {scoreError}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+          </div>
         </section>
 
         {/* ══ RESULTS ══ */}
