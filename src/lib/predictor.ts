@@ -35,7 +35,7 @@ function calcRankBand(_score: number, rank: number): { from: number; to: number 
 
   // Lower marks (higher rank numbers) get 5% variation for a wider band;
   // top performers (rank < 1000) get 0.05% so the band stays tight.
-  const VARIATION = rank < 1_000 ? 0.0005 : 0.05;
+  const VARIATION = rank < 1_000 ? 0.0005 : 0.03;
 
   // ── Step 1: compute symmetric bounds ──────────────────────────────────
   let from = Math.max(1, Math.round(rank * (1 - VARIATION)));
