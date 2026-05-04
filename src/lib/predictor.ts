@@ -21,78 +21,41 @@ const PUBLIC_MIN = 0;
 const PUBLIC_MAX = 720;
 
 /**
- * Realistic NEET rank band calculator (rank-proportional approach).
+ * Dynamic NEET rank band calculator — ±5% of predicted rank.
  *
- * Rather than absolute widths (which depend on the dataset's base ranks),
- * we compute the band as a percentage of the predicted rank itself.
- * This means the band always looks proportional and meaningful regardless
- * of the score tier.
+ * Band = [ rank × 0.95,  rank × 1.05 ]
  *
- * Calibrated for ≈ 2.4 M NEET 2026 candidates:
+ * This keeps the variation proportional (~5% on each side) across all
+ * rank tiers, so the displayed range always feels tight and meaningful.
  *
- *  Rank tier       | fromPct (lower = better rank) | toPct (upper = worse rank)
- *  ────────────────|───────────────────────────────|────────────────────────────
- *  < 100 (toppers) | ×0.50  (lose up to 50%)       | ×2.60
- *  100 – 500       | ×0.58                         | ×2.20
- *  500 – 2 000     | ×0.62                         | ×1.90
- *  2 000 – 8 000   | ×0.66                         | ×1.72
- *  8 000 – 25 000  | ×0.70                         | ×1.55
- *  25 000 – 80 000 | ×0.73                         | ×1.45
- *  80 000 – 200 000| ×0.76                         | ×1.40
- *  200 000 – 500 000|×0.78                         | ×1.36
- *  > 500 000       | ×0.80                         | ×1.32
- *
- *  Band is always ASYMMETRIC — lower bound tighter than upper.
- *  Minimum absolute gap enforced so band is never trivial.
- *  from ≠ to is always guaranteed.
+ * A tier-scaled minimum absolute gap is enforced so the band is never
+ * trivially narrow for very low ranks.
  */
 function calcRankBand(_score: number, rank: number): { from: number; to: number } {
 
-  // ── Step 1: multipliers based on rank tier ─────────────────────────────
-  let fromMult: number;
-  let toMult: number;
+  const VARIATION = 0.05; // ±5% of predicted rank
 
-  if (rank < 100) {
-    fromMult = 0.50; toMult = 2.60;
-  } else if (rank < 500) {
-    fromMult = 0.58; toMult = 2.20;
-  } else if (rank < 2_000) {
-    fromMult = 0.62; toMult = 1.90;
-  } else if (rank < 8_000) {
-    fromMult = 0.66; toMult = 1.72;
-  } else if (rank < 25_000) {
-    fromMult = 0.70; toMult = 1.55;
-  } else if (rank < 80_000) {
-    fromMult = 0.73; toMult = 1.45;
-  } else if (rank < 200_000) {
-    fromMult = 0.76; toMult = 1.40;
-  } else if (rank < 500_000) {
-    fromMult = 0.78; toMult = 1.36;
-  } else {
-    fromMult = 0.80; toMult = 1.32;
-  }
+  // ── Step 1: compute symmetric ±5% bounds ──────────────────────────────
+  let from = Math.max(1, Math.round(rank * (1 - VARIATION)));
+  let to   = Math.round(rank * (1 + VARIATION));
 
-  // ── Step 2: compute raw bounds ─────────────────────────────────────────
-  let from = Math.max(1, Math.round(rank * fromMult));
-  let to   = Math.round(rank * toMult);
-
-  // ── Step 3: enforce minimum absolute gap ──────────────────────────────
+  // ── Step 2: enforce tier-scaled minimum absolute gap ──────────────────
   const minGap =
-    rank < 200    ?  30   :
-    rank < 1_000  ?  150  :
-    rank < 10_000 ?  800  :
-    rank < 50_000 ?  4_000 :
-    rank < 200_000 ? 15_000 :
-                     40_000;
+    rank < 100    ?  20   :
+    rank < 1_000  ?  50   :
+    rank < 10_000 ?  200  :
+    rank < 100_000 ? 1_000 :
+                     5_000;
 
   if (to - from < minGap) {
     const mid = Math.round((from + to) / 2);
-    from = Math.max(1, mid - Math.round(minGap * 0.38));
-    to   = mid + Math.round(minGap * 0.62);
+    from = Math.max(1, mid - Math.round(minGap / 2));
+    to   = from + minGap; // extend to from the (possibly clamped) from
   }
 
-  // ── Step 4: guarantee from ≠ to ────────────────────────────────────────
-  if (from >= to) return { from: Math.max(1, to - minGap), to };
+  // ── Step 3: guarantee from ≠ to and from ≥ 1 ──────────────────────────
+  from = Math.max(1, from);
+  if (from >= to) to = from + 1;
 
   return { from, to };
 }
@@ -117,6 +80,20 @@ export function validateScore(value: string): number {
 }
 
 export function findNearestPrediction(inputScore: number): PredictionResult {
+  // ── Scores at or above the dataset's highest score → always rank 1 ────
+  const topRow = rows[rows.length - 1];
+  if (inputScore >= topRow.score) {
+    const band = calcRankBand(inputScore, topRow.rank);
+    return {
+      inputScore,
+      matchedScore: topRow.score,
+      predictedRank: topRow.rank,
+      predictedFrom: band.from,   // guaranteed ≥ 1
+      predictedTo:   band.to,
+      exactMatch: inputScore === topRow.score,
+    };
+  }
+
   let low = 0;
   let high = rows.length - 1;
 
