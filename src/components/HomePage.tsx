@@ -411,7 +411,7 @@ export default function HomePage() {
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: "🎯", title: "Accurate Predictions",  body: "Powered by real NEET 2026 score–rank data. Smart nearest-score matching ensures every student gets a result." },
+              { icon: "🎯", title: "Accurate Predictions",  body: "Powered by real NEET 2025 score–rank data. Smart nearest-score matching ensures every student gets a result." },
               { icon: "🏫", title: "College Guidance",       body: "Our counsellors help you identify the best medical colleges based on your rank, category, and state." },
               { icon: "📞", title: "1-on-1 Counselling",    body: "Book a free session with a TAB India expert. We guide you through every step of NEET counselling." },
             ].map((item) => (
